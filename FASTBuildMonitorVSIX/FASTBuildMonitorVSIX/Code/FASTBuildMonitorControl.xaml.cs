@@ -2075,7 +2075,13 @@ namespace FASTBuildMonitorVSIX
         {
             if (_fileStream == null)
             {
-                string path = System.Environment.GetEnvironmentVariable("TEMP") + @"\FastBuild\FastBuildLog.log";
+                string path = System.Environment.GetEnvironmentVariable("TEMP");
+                string fastbuildTempPath = System.Environment.GetEnvironmentVariable("FASTBUILD_TEMP_PATH");
+                if (fastbuildTempPath != null)
+                {
+                    path = fastbuildTempPath;
+                }
+                path += @"\FastBuild\FastBuildLog.log";
 
                 if (!Directory.Exists(System.IO.Path.GetDirectoryName(path)))
                 {
